@@ -1,0 +1,24 @@
+name: second-action-workflow
+on: push
+# possible triggers
+# - repository related including push, pull_request, etc.
+# - issue related including issues, issue_comment, etc.
+# - release related including release, etc.
+# - schedule related including schedule (cron jobs)
+# - workflow related including workflow_dispatch (manual trigger), workflow_run, etc. 
+# - others include: workflow_dispatch, page_build, public, watch, fork, etc. repository_dispatch 
+
+jobs:
+  second-action-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get code from repository
+        uses: actions/checkout@v5
+      - name: install nodeJs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 24
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm test
